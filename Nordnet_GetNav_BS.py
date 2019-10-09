@@ -1,4 +1,4 @@
-#!/bin/python2.7
+##!/bin/python2.7
 #########################################
 ##Import needed libraries
 #########################################
@@ -38,7 +38,7 @@ ErrorID.write(texttowrite + '\r\n')
 #########################################
 ## Get IDs to read
 #########################################
-with codecs.open('/volume1/homes/Martin/Nordnet/ID.txt', 'r', encoding='utf-8') as Funds:
+with codecs.open(input + '/' + 'ID.txt', 'r', encoding='utf-8') as Funds:
 	for Fund in Funds:
 		Fund2 = Fund.strip()
 		res = requests.get(static1 + Fund2 + static2)
@@ -48,9 +48,9 @@ with codecs.open('/volume1/homes/Martin/Nordnet/ID.txt', 'r', encoding='utf-8') 
 			Nav = table.find_all('td')[3].text
 			PreNavDate = table.find_all('td')[5].text
 			NavDate = PreNavDate.strip()
-		except Exception as e:
-			ErrorID.write("%s" % x_stripped  + "@" + "%s" % str(e) + '\r\n')
 ################################################
 ## Write to file
 ################################################
-		Nordnet_Nav.write("%s" %Fund2 + "@" + "%s" %Nav + "@" "%s" %NavDate + '\r\n')
+			Nordnet_Nav.write("%s" %Fund2 + "@" + "%s" %Nav + "@" "%s" %NavDate + '\r\n')
+		except Exception as e:
+			ErrorID.write("%s" % x_stripped  + "@" + "%s" % str(e) + '\r\n')
